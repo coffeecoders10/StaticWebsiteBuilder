@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Webpages</title>
+
+  {% include './elements/headers.html' %}
+
+  <style media="screen">
+    :root {
+      --primary-color: #c49b63;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d-flex align-items-stretch">
+    <div class="page-content form-page">
+      <div class="bg-dash-dark-2 py-4">
+        <div class="container-fluid d-flex justify-content-start align-items-center">
+          <img src="{% static 'images/coffeecoders.png' %}" alt="" style="max-height:50px">
+          <h2 class="h5 mb-0 px-4 text-uppercase">Single Webpage Admin</h2>
+        </div>
+      </div>
+      <div class="container-fluid py-2">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 py-3 px-0">
+          </ol>
+        </nav>
+      </div>
+      <section class="pt-0">
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height:75vh">
+          <div class="row gy-4 container-fluid">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="h4 mb-0 text-uppercase">Webpages</h3>
+                </div>
+                <div class="card-body pt-0">
+                  <p class="p-0 m-0" style="line-height:1">Create or Edit Webpages</p>
+                  <div class="form-text text-danger mb-2">{{error}}</div>
+                  <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                      <label class="form-label" for="InputPassword" required>Password</label>
+                      <input class="form-control" id="InputPassword" name="password" type="password">
+                    </div>
+                    <div class="row">
+                      <div class="col-6 create-pages mt-3">
+                        <div class="mb-3">
+                          <label class="form-label" for="exampleInputPassword1">Webpage Name</label>
+                          <input class="form-control" id="exampleInputPassword1" type="text" name="webpage_name">
+                          <div class="form-text">No spaces or special characters except ' _ '</div>
+                        </div>
+                        <div class="col-lg d-flex justify-content-end">
+                          <button class="btn btn-primary" type="submit" name="next" value="create">Create</button>
+                        </div>
+                      </div>
+                      <div class="col-6 edit-pages mt-3">
+                        <label class="form-label" for="exampleInputPassword1">Choose Webpage</label>
+                        <select class="form-control bg-dark optSelect" name="curr_webpage">
+                          <option selected disabled>Choose Webpage</option>
+                          {% for i in all_webpages %}
+                          <option value="{{i.name}}">{{i.name}}</option>
+                          {% endfor %}
+                        </select>
+                        <div class="form-text">Do not forget to enter password first</div>
+                        <div class="col-lg d-flex justify-content-end mt-3">
+                          <button class="btn btn-primary" type="submit" name="next" value="edit">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

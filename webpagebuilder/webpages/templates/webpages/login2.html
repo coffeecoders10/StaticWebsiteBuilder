@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Bootstrap CSS Link (optional) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+  <div class="container mt-5">
+    <!-- First Form -->
+    <form id="firstForm">
+      <div class="form-group">
+        <label for="passwordField">Password:</label>
+        <input type="password" class="form-control" id="passwordField" placeholder="Enter password" required>
+      </div>
+      
+      <div id="edit" style="display:none">
+        <div class="form-group">
+          <label for="selectOption">Select Option:</label>
+          <select class="form-control" id="selectOption" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+        
+        <button type="button" class="btn btn-success">Edit Now</button>
+      </div>
+      
+      
+      
+      <div id="create" style="display:none">
+        <div class="form-group">
+          <label for="inputField">Input:</label>
+          <input type="text" class="form-control" id="inputField" placeholder="Enter something" required>
+        </div>
+        
+        <button type="button" class="btn btn-success">Create Now</button>
+      </div>
+    </form>
+
+
+    <!-- Create Button -->
+    <button type="button" class="btn btn-info mt-3" onclick="create()">Create</button>
+    <button type="button" class="btn btn-info mt-3" onclick="edit()">Edit</button>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js (required for Bootstrap components) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function create() {
+      // Toggle the display property of the second form
+      var create = document.getElementById("create");
+      create.style.display = create.style.display === "none" ? "block" : "none";
+    }
+    
+    function edit() {
+      // Toggle the display property of the second form
+      var edit = document.getElementById("edit");
+      edit.style.display = edit.style.display === "none" ? "block" : "none";
+    }
+  </script>
+</body>
+</html>

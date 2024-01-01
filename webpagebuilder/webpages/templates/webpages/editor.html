@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Editor</title>
+  {% include './elements/headers.html' %}
+
+  <style media="screen">
+    :root {
+      --primary-color: #c49b63;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="d-flex align-items-stretch">
+    <div class="page-content form-page">
+      <div class="bg-dash-dark-2 py-4">
+        <div class="container-fluid">
+          <img src="{% static 'images/coffeecoders.png' %}" alt="" style="max-height:50px">
+        </div>
+      </div>
+      <div class="container-fluid py-2">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 py-3 px-0">
+          </ol>
+        </nav>
+      </div>
+      <section class="pt-0">
+
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+          <div class="row container-fluid">
+            <div class="d-flex align-items-center justify-content-between mt-3">
+              <div class="d-flex justify-content-start align-items-top">
+                <img src="{% static 'images/coffeecoders.png' %}" alt="" style="max-height:20px">
+                <h3 class="h4 mb-4 text-uppercase px-2">{{webpage_name}}</h3>
+              </div>
+              
+              <div class="">
+                <a target="_blank" href="{% url 'webpage'  %}" class="btn btn-primary">Preview</a>
+                <button class="btn btn-primary" id="copyButton" onclick="copyToClipboard()" value="{{link}}">Copy Link</button>
+              </div>
+            </div>
+            <form action="{% url 'editor' %}" method="post">
+              {% csrf_token %}
+              <textarea id="codeEditor" name="code">{{code}}</textarea>
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-danger" type="submit" name="next" value="{{webpage_name}}">Delete</button>
+                <button class="btn btn-primary" type="submit" name="next" value="save">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  {% include './elements/scripts.html' %}
+
+</body>
+
+</html>
